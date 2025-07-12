@@ -1,42 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { fetchPricingData } from "../../../services/api";
-import "./PricingTable.css"; // Optional styling
+// src/components/sections/PricingTable/PricingTable.jsx
+import React from "react";
+import styles from "./PricingTable.module.css";
 
-const PricingTable = () => {
-  const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const data = await fetchPricingData();
-        setPlans(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
-
-  if (loading) return <div>Loading plans...</div>;
-  if (error) return <div>Error: {error}</div>;
+const PricingTable = ({ plans }) => {
+  const pricingPlans = [
+    {
+      id: 1,
+      name: "Basic",
+      price: "$9",
+      features: ["Feature 1", "Feature 2", "Feature 3"],
+    },
+    {
+      id: 2,
+      name: "Pro",
+      price: "$29",
+      features: ["All Basic features", "Feature 4", "Feature 5"],
+    },
+  ];
 
   return (
-    <div className="pricing-table">
-      {plans.map((plan) => (
-        <div key={plan.id} className="pricing-card">
+    <div className={styles.pricingTable}>
+      {pricingPlans.map((plan) => (
+        <div key={plan.id} className={styles.pricingCard}>
           <h3>{plan.name}</h3>
-          <p>${plan.price}/month</p>
-          <ul>
+          <div className={styles.price}>
+            {plan.price}
+            <span>/month</span>
+          </div>
+          <ul className={styles.features}>
             {plan.features.map((feature, index) => (
               <li key={index}>{feature}</li>
             ))}
           </ul>
-          <button>Select Plan</button>
+          <button className={styles.ctaButton}>Get Started</button>
         </div>
       ))}
     </div>
