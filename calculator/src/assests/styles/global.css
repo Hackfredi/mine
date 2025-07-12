@@ -1,0 +1,12 @@
+/* Example styles */
+.ct4-button {
+  background: #0066cc;
+  color: white;
+  padding: 10px 20px;
+}
+
+.pricing-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
