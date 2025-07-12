@@ -1,0 +1,15 @@
+.pricing-table {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.pricing-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.pricing-card h3 {
+  color: #0066cc;
+}
